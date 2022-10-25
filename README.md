@@ -7,6 +7,9 @@ Oppgaven er levert av følgende student:
 
 # Oppgavebeskrivelse
 
-I oppgave 1 så gikk jeg frem ved å ...
+I oppgave 1 så brukte jeg programkoden fra boka, og endret p = new Node og la til q som forelder i den nye node.
 
-I oppgave 2 så brukte jeg en ... til å ...
+I oppgave 2 så brukte jeg en while løkke og en int teller til å sammenligne verdien med verdien til noden. Hvis cmp blir mer enn null
+går den til venstre node, hvis ikke så sjekker den om cmp er 0. Hvis cmp er 0 så legges en til på teller og flyttes til noden i høyre.
+
+I oppgave 3 

@@ -11,10 +11,6 @@ public class egenTest {
         for (int verdi : a) { tre.leggInn(verdi); }
         System.out.println("Utskrift");
         System.out.println(tre.antall()); // Utskrift: 10
-        System.out.println(tre.antall(5)); // Utskrift: 0
-        System.out.println(tre.antall(4)); // Utskrift: 3
-        System.out.println(tre.antall(7)); // Utskrift: 2
-        System.out.println(tre.antall(10)); // Utskrift: 1
-
+        System.out.println();
     }
 }

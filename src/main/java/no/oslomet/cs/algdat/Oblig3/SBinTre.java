@@ -152,7 +152,7 @@ public class SBinTre<T> {
 
     public void postorden(Oppgave<? super T> oppgave) {
         Node<T> p = førstePostorden(rot);
-        while (p.forelder != null) {
+        while (p != null) {
             p = nestePostorden(p);
         }
     }

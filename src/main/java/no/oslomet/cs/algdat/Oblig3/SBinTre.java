@@ -183,8 +183,12 @@ public class SBinTre<T> {
         return list;
     }
 
-    static <K> SBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+    static <K> SBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {;
+        if (data.get(0) == null) {
+            return null;
+        }
+        SBinTre<K> SBinTre = new SBinTre<K>(data.get(0));
+        return SBinTre;
     }
 
 

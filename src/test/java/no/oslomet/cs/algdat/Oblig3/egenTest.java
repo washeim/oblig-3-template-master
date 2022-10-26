@@ -1,16 +1,18 @@
 package no.oslomet.cs.algdat.Oblig3;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class egenTest {
     // OPPGAVE 1 ////////////////////////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave1() {
-        Integer[] a = {4,7,2,9,4,10,8,7,4,6};
+        //Lag et nytt binærtre
         SBinTre<Integer> tre = new SBinTre<>(Comparator.naturalOrder());
+        int[] a = {10, 14, 6, 8, 1, 12, 7, 3, 11, 9, 13, 5, 2, 4};
         for (int verdi : a) { tre.leggInn(verdi); }
-        System.out.println("Utskrift");
-        System.out.println(tre.antall()); // Utskrift: 10
-        System.out.println();
+        //Gjør om treet til et array
+        ArrayList<Integer> data = tre.serialize();
+        System.out.println(data);
     }
 }

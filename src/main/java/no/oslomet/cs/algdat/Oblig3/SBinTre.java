@@ -1,10 +1,8 @@
 package no.oslomet.cs.algdat.Oblig3;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.StringJoiner;
+import javax.swing.tree.TreeNode;
+import java.util.*;
 
 public class SBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
@@ -165,8 +163,24 @@ public class SBinTre<T> {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
+    //Oppgave 5
     public ArrayList<T> serialize() {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        ArrayList<T> list = new ArrayList<>();
+        LinkedList<Node> q = new LinkedList<>();
+        q.offer(rot);
+
+        while (!q.isEmpty()) {
+            Node<T> h = q.poll();
+            if (h == null) {
+                T finnesIkke = null;
+                list.add(finnesIkke);
+            } else {
+                list.add(h.verdi);
+                q.offer(h.venstre);
+                q.offer(h.høyre);
+            }
+        }
+        return list;
     }
 
     static <K> SBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {

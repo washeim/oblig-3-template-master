@@ -123,6 +123,7 @@ public class Oblig3Test {
             s = tre.toStringPostOrder();
             if (!s.equals("[2, 4, 5, 3, 1, 7, 9, 8, 6, 11, 13, 12, 14, 10]")) {
                 antallFeil++;
+                System.out.println(s);
                 System.out.println("Oppgave 3d: Feil i toStringPostOrder()! Men feilen kan");
                 System.out.println("ligge i leggInn() eller i nesteInorden().");
             }

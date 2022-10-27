@@ -165,25 +165,36 @@ public class SBinTre<T> {
 
     //Oppgave 3
     private static <T> Node<T> førstePostorden(Node<T> p) {
-        while (p.venstre!=null || p.høyre!=null){
+        Node<T> c = p;
+        while(c!=null){
             if (p.venstre!=null){
                 p = p.venstre;
             }
-            else {
+            else if (p.høyre!=null){
                 p = p.høyre;
+            } else {
+                c = p.høyre;
             }
         }
         return p;
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        if (p.høyre == null) {
+        if (p.forelder == null) {
+            return null;
+        } else {
+            Node<T> old = p;
             p = p.forelder;
+            if (p.venstre == old.verdi) {
+                if (p.høyre != null) {
+                    p = p.høyre;
+                }
+                return p;
+            }
+            else {
+                return p;
+            }
         }
-        else {
-            p = førstePostorden(p);
-        }
-        return p;
     }
 
     public void postorden(Oppgave<? super T> oppgave) {

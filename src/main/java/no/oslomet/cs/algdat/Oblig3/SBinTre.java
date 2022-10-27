@@ -102,7 +102,40 @@ public class SBinTre<T> {
     }
 
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (verdi == null) return false;  // treet har ingen nullverdier
+        Node<T> p = rot, q = null;   // q skal være forelder til p
+        while (p != null)            // leter etter verdi
+        {
+            int cmp = comp.compare(verdi,p.verdi);      // sammenligner
+            if (cmp < 0) { q = p; p = p.venstre; }      // går til venstre
+            else if (cmp > 0) { q = p; p = p.høyre; }   // går til høyre
+            else break;    // den søkte verdien ligger i p
+        }
+        if (p == null) return false;   // finner ikke verdi
+
+        if (p.venstre == null || p.høyre == null)  // Tilfelle 1) og 2)
+        {
+            Node<T> b = p.venstre != null ? p.venstre : p.høyre;  // b for barn
+            if (p == rot) rot = b;
+            else if (p == q.venstre) q.venstre = b;
+            else q.høyre = b;
+        }
+        else  // Tilfelle 3)
+        {
+            Node<T> s = p, r = p.høyre;   // finner neste i inorden
+            while (r.venstre != null)
+            {
+                s = r;    // s er forelder til r
+                r = r.venstre;
+            }
+
+            p.verdi = r.verdi;   // kopierer verdien i r til p
+
+            if (s != p) s.venstre = r.høyre;
+            else s.høyre = r.høyre;
+        }
+        antall--;   // det er nå én node mindre i treet
+        return true;
     }
 
     public int fjernAlle(T verdi) {
@@ -132,20 +165,25 @@ public class SBinTre<T> {
 
     //Oppgave 3
     private static <T> Node<T> førstePostorden(Node<T> p) {
-        while (p.høyre != null) {                    //mens den har en neste node
-            p = p.høyre;                             //gjør først verdien til høyre
-            if (p.venstre != null) p = p.venstre;    //deretter verdien til venstre hvis den finnes.
+        while (p.venstre!=null || p.høyre!=null){
+            if (p.venstre!=null){
+                p = p.venstre;
+            }
+            else {
+                p = p.høyre;
+            }
         }
         return p;
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        Node<T> q = p.forelder;
-        if (q.høyre == p.verdi) {
-            return q;
-        } else {
-            return p.høyre;
+        if (p.høyre == null) {
+            p = p.forelder;
         }
+        else {
+            p = førstePostorden(p);
+        }
+        return p;
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
@@ -183,12 +221,9 @@ public class SBinTre<T> {
         return list;
     }
 
+    //Ikke fullført oppgave 5
     static <K> SBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {;
-        if (data.get(0) == null) {
-            return null;
-        }
-        SBinTre<K> SBinTre = new SBinTre<K>(data.get(0));
-        return SBinTre;
+        throw new ConcurrentModificationException("");
     }
 
 

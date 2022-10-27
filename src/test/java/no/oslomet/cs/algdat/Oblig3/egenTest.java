@@ -11,8 +11,6 @@ public class egenTest {
         SBinTre<Integer> tre = new SBinTre<>(Comparator.naturalOrder());
         int[] a = {10, 14, 6, 8, 1, 12, 7, 3, 11, 9, 13, 5, 2, 4};
         for (int verdi : a) { tre.leggInn(verdi); }
-        //Gjør om treet til et array
-        ArrayList<Integer> data = tre.serialize();
-        System.out.println(data);
+
     }
 }

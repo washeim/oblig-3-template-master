@@ -192,15 +192,16 @@ public class SBinTre<T> {
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
         if (p.forelder == null) return null;
-        Node<T> barn = p;
-        p = p.forelder;
-        if (p.høyre == barn) return p;
-        if (p.venstre == barn) {
-            if (p.høyre == null) return p;
-            else return p.høyre;
-        } else {
-            return null;
+        Node<T> forelder = p.forelder;
+        if (forelder.venstre==p && forelder.høyre!=null){
+            p = forelder.høyre;
+            if (p.venstre!=null) return p.venstre;
+            else if (p.høyre!=null) return p.høyre;
         }
+        else if (forelder.venstre==p && forelder.høyre==null){
+
+        }
+        return forelder;
     }
 
     public void postorden(Oppgave<? super T> oppgave) {

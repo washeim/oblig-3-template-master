@@ -8,14 +8,11 @@ public class egenTest {
     @org.junit.jupiter.api.Test
     void oppgave1() {
         //Lag et nytt binærtre
-        Integer[] a = {4,7,2,9,4,10,8,7,4,6};
-        SBinTre<Integer> tre = new SBinTre<>(Comparator.naturalOrder());
-        for (int verdi : a) { tre.leggInn(verdi); }
-
-        System.out.println(tre.antall());      // Utskrift: 10
-        System.out.println(tre.antall(5));     // Utskrift: 0
-        System.out.println(tre.antall(4));     // Utskrift: 3
-        System.out.println(tre.antall(7));     // Utskrift: 2
-        System.out.println(tre.antall(10));
+        int[] a = {6, 14, 1, 8, 12, 3, 7, 9, 11, 13, 2, 5, 4};
+        SBinTre<Integer> tre =
+                new SBinTre<>(Comparator.naturalOrder());
+        for (int verdi : a) tre.leggInn(verdi);
+        String s = tre.toStringPostOrder();
+        System.out.println(s);
     }
 }

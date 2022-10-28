@@ -149,19 +149,19 @@ public class SBinTre<T> {
     {
         if (p.venstre != null)
         {
-            nullstill(p.venstre);      // venstre subtre
-            p.venstre = null;          // nuller peker
+            nullstill(p.venstre);
+            p.venstre = null;
         }
         if (p.høyre != null)
         {
-            nullstill(p.høyre);        // høyre subtre
-            p.høyre = null;            // nuller peker
+            nullstill(p.høyre);
+            p.høyre = null;
         }
-        p.verdi = null;              // nuller verdien
+        p.verdi = null;
     }
     public void nullstill() {
-        if (!tom()) nullstill(rot);  // nullstiller
-        rot = null; antall = 0;      // treet er nå tomt
+        if (!tom()) nullstill(rot);
+        rot = null; antall = 0;
     }
 
     //Oppgave 2
@@ -239,7 +239,7 @@ public class SBinTre<T> {
         return list;
     }
 
-    //Ikke fullført oppgave 5
+    //Ikke fungerende, feil i tidligere oppgave gjør feil i videre kjøring av test.
     static <K> SBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {;
         throw new ConcurrentModificationException("");
     }

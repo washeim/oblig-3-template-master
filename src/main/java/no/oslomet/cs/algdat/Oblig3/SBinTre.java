@@ -101,6 +101,7 @@ public class SBinTre<T> {
         return true;                             // vellykket innlegging
     }
 
+    //Oppgave 6
     public boolean fjern(T verdi) {
         if (verdi == null) return false;  // treet har ingen nullverdier
         Node<T> p = rot, q = null;   // q skal være forelder til p
@@ -139,7 +140,28 @@ public class SBinTre<T> {
     }
 
     public int fjernAlle(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        int verdiAntall = 0;
+        while (fjern(verdi)) verdiAntall++;
+        antall = antall - verdiAntall;
+        return verdiAntall;
+    }
+    private void nullstill(Node<T> p)
+    {
+        if (p.venstre != null)
+        {
+            nullstill(p.venstre);      // venstre subtre
+            p.venstre = null;          // nuller peker
+        }
+        if (p.høyre != null)
+        {
+            nullstill(p.høyre);        // høyre subtre
+            p.høyre = null;            // nuller peker
+        }
+        p.verdi = null;              // nuller verdien
+    }
+    public void nullstill() {
+        if (!tom()) nullstill(rot);  // nullstiller
+        rot = null; antall = 0;      // treet er nå tomt
     }
 
     //Oppgave 2
@@ -159,12 +181,7 @@ public class SBinTre<T> {
         return count;
     }
 
-    public void nullstill() {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
-    }
-
     //Oppgave 3
-
     private static <T> Node<T> førstePostorden(Node<T> p) {
         while (true) {
             if (p.venstre != null) p = p.venstre;
@@ -188,13 +205,13 @@ public class SBinTre<T> {
 
     public void postorden(Oppgave<? super T> oppgave) {
         Node<T> p = førstePostorden(rot);
-        while (p != null) {
+        while (p.verdi!=null){
             p = nestePostorden(p);
         }
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
-        postordenRecursive(rot, oppgave);
+
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {

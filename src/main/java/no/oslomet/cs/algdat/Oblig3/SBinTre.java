@@ -228,10 +228,7 @@ public class SBinTre<T> {
 
         while (!q.isEmpty()) {
             Node<T> h = q.poll();
-            if (h == null) {
-                T finnesIkke = null;
-                list.add(finnesIkke);
-            } else {
+            if (h != null) {
                 list.add(h.verdi);
                 q.offer(h.venstre);
                 q.offer(h.høyre);
@@ -242,7 +239,11 @@ public class SBinTre<T> {
 
     //Ikke fungerende, feil i tidligere oppgave gjør feil i videre kjøring av test.
     static <K> SBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {;
-        throw new ConcurrentModificationException("");
+        SBinTre<K> tre = new SBinTre<K>(c);
+        for (K k : data) {
+            tre.leggInn(k);
+        }
+        return tre;
     }
 
 

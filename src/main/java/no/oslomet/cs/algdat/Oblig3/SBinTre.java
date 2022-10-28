@@ -5,6 +5,8 @@ import javax.swing.tree.TreeNode;
 import java.util.*;
 
 public class SBinTre<T> {
+    private Oppgave<? super T> oppgave;
+
     private static final class Node<T>   // en indre nodeklasse
     {
         private T verdi;                   // nodens verdi
@@ -104,6 +106,7 @@ public class SBinTre<T> {
     //Oppgave 6
     public boolean fjern(T verdi) {
         if (verdi == null) return false;  // treet har ingen nullverdier
+        if (!inneholder(verdi)) return false;  //verdi ikke i treet
         Node<T> p = rot, q = null;   // q skal være forelder til p
         while (p != null)            // leter etter verdi
         {
@@ -192,16 +195,14 @@ public class SBinTre<T> {
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
         if (p.forelder == null) return null;
-        Node<T> forelder = p.forelder;
-        if (forelder.venstre==p && forelder.høyre!=null){
-            p = forelder.høyre;
-            if (p.venstre!=null) return p.venstre;
-            else if (p.høyre!=null) return p.høyre;
-        }
-        else if (forelder.venstre==p && forelder.høyre==null){
+        Node parent = p.forelder;
+        if (parent.høyre == null || parent.høyre == p)
+            return parent;
+        Node curr = parent.høyre;
+        while (curr.venstre != null)
+            curr = curr.venstre;
 
-        }
-        return forelder;
+        return curr;
     }
 
     public void postorden(Oppgave<? super T> oppgave) {

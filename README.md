@@ -12,9 +12,9 @@ I oppgave 1 så brukte jeg programkoden fra boka, og endret p = new Node og la t
 I oppgave 2 så brukte jeg en while løkke og en int teller til å sammenligne verdien med verdien til noden. Hvis cmp blir mer enn null
 går den til venstre node, hvis ikke så sjekker den om cmp er 0. Hvis cmp er 0 så legges en til på teller og flyttes til noden i høyre.
 
-I oppgave 3 brukte jeg while for å finne den siste noden som enten har en venstre eller høyre verdi. P settes til den siste verdien her.
-I neste postOrden sjekkes om det om p er høyreverdien til foreldre nodes sin, hvis der er det så returneres foreldrenoden Q.
-Hvis det ikke er høyreverdien til Q så returneres høyreverdien til P.
+I oppgave 3 brukte jeg while for å finne den siste noden som enten har en venstre eller høyre verdi. I nestepostorden lagde jeg en ny node som er foreldren til p. Deretter sjekket jeg om høyreverdien er lik p eller null, hvis dej er det så returneres fforeldrenoden.
+Hvis den ikke var det så gjøres noden om til høyreverdien og så brukes en while løkke til å gi den lengst til venstre.
+
 
 I oppgave 4 lagde jeg en ny node av førstepostorden til roten og deretter kjører jeg en while løkke som gjør p om til neste i rekken.
 
